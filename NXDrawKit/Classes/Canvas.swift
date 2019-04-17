@@ -67,24 +67,28 @@ open class Canvas: UIView, UITableViewDelegate {
         
         self.addSubview(self.backgroundImageView)
         self.backgroundImageView.contentMode = .scaleAspectFit
-        self.backgroundImageView.autoresizingMask = [.flexibleHeight ,.flexibleWidth]
+        
+        self.backgroundImageView.topAnchor.constraint(equalTo: self.topAnchor)
+        self.backgroundImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        self.backgroundImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor)
+        self.backgroundImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         
         self.addSubview(self.mainImageView)
-        self.mainImageView.autoresizingMask = [.flexibleHeight ,.flexibleWidth]
+        
+        self.mainImageView.topAnchor.constraint(equalTo: self.topAnchor)
+        self.mainImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        self.mainImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor)
+        self.mainImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
 
         self.addSubview(self.tempImageView)
-        self.tempImageView.autoresizingMask = [.flexibleHeight ,.flexibleWidth]
+
+        self.tempImageView.topAnchor.constraint(equalTo: self.topAnchor)
+        self.tempImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        self.tempImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor)
+        self.tempImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
     }
     
     // MARK: - Override Methods
-    
-    open override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        self.backgroundImageView.frame = self.bounds
-        self.mainImageView.frame = self.bounds
-        self.tempImageView.frame = self.bounds
-    }
     
     open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.saved = false
