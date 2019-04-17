@@ -41,16 +41,24 @@ open class Canvas: UIView, UITableViewDelegate {
     // MARK: - Initializers
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        self.path.lineCapStyle = .round
+        self.canvasId = nil
+        self.backgroundImageView.image = nil
+        
+        self.initialize()
     }
     
     @objc public init(canvasId: String? = nil, backgroundImage image: UIImage? = nil) {
         super.init(frame: CGRect.zero)
+        
         self.path.lineCapStyle = .round
         self.canvasId = canvasId
         self.backgroundImageView.image = image
         if image != nil {
             session.appendBackground(Drawing(stroke: nil, background: image))
         }
+        
         self.initialize()
     }
     
