@@ -76,8 +76,16 @@ open class Canvas: UIView, UITableViewDelegate {
         self.tempImageView.autoresizingMask = [.flexibleHeight ,.flexibleWidth]
     }
     
-
     // MARK: - Override Methods
+    
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.backgroundImageView.frame = self.bounds
+        self.mainImageView.frame = self.bounds
+        self.tempImageView.frame = self.bounds
+    }
+    
     open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.saved = false
         self.pointMoved = false
@@ -137,8 +145,8 @@ open class Canvas: UIView, UITableViewDelegate {
         self.pointIndex = 0
     }
     
-    
     // MARK: - Private Methods
+    
     private func compare(_ image1: UIImage?, isEqualTo image2: UIImage?) -> Bool {
         if (image1 == nil && image2 == nil) {
             return true
@@ -264,8 +272,8 @@ open class Canvas: UIView, UITableViewDelegate {
         return rect
     }
     
-    
     // MARK: - Public Methods
+    
     @objc open func update(_ backgroundImage: UIImage?) {
         self.backgroundImageView.image = backgroundImage
         self.session.append(self.currentDrawing())
@@ -316,4 +324,5 @@ open class Canvas: UIView, UITableViewDelegate {
     @objc open func canSave() -> Bool {
         return !(self.isStrokeEqual() && self.isBackgroundEqual())
     }
+    
 }
